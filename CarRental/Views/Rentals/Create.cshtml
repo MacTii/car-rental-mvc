@@ -1,0 +1,124 @@
+﻿@model CarRental.Models.Rental
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Rental</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            @*<div class="form-group">
+                <label asp-for="CarId" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" asp-items="ViewBag.CarId"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverId" class="control-label"></label>
+                <select asp-for="DriverId" class ="form-control" asp-items="ViewBag.DriverId"></select>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="@Model.Car.Make" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" id="carMake" asp-items="ViewBag.Make"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Car.Model" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" id="carModel" asp-items="ViewBag.Model"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Car.RegistrationNumber" class="control-label"></label>
+                <select asp-for="CarId" class ="form-control" id="carRegistrationNumber" asp-items="ViewBag.RegistrationNumber"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Driver.Name" class="control-label"></label>
+                <select asp-for="DriverId" class ="form-control" id="driverName" asp-items="ViewBag.Name"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Driver.Surname" class="control-label"></label>
+                <select asp-for="DriverId" class ="form-control" id="driverSurname" asp-items="ViewBag.Surname"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Driver.PhoneNumber" class="control-label"></label>
+                <select asp-for="DriverId" class ="form-control" id="driverPhoneNumber" asp-items="ViewBag.PhoneNumber"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="RentDate" class="control-label"></label>
+                <input asp-for="RentDate" id="rentDate" class="form-control" />
+                <span asp-validation-for="RentDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ReturnDate" class="control-label"></label>
+                <input asp-for="ReturnDate" id="returnDate" class="form-control" />
+                <span asp-validation-for="ReturnDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Comments" class="control-label"></label>
+                <input asp-for="Comments" id="comments" class="form-control" />
+                <span asp-validation-for="Comments" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+    @*<script>
+
+        getRentals();
+        load();
+
+        function getRentals()
+        {
+            var driver = {
+                carMake: $("#carMake").val(),
+                carModel: $("#carModel").val(),
+            };
+            $.ajax({
+                type: 'GET',
+                url: '/Rentals/Create/GetRentals',
+                // dataType: 'JSON',
+                data: JSON.stringify(driver),
+                success: function(data) {
+                    //alert("?");
+                    console.log(data);
+                    console.log("?")
+
+                    for (var i = 0; i < data.length; i++) {
+                        // console.log("siema")
+                        $("#carModel").append($("<option/>", {
+                            text: data[i].carid
+                        }))
+                    }
+                },
+                error: function (request, status, error) {
+                    alert(request.responseText);
+                }
+            });
+        }
+
+        function load()
+        {
+            // $("#carMake").attr("disabled", "disabled");
+            $("#carModel").attr("disabled", "disabled");
+            $("#carRegistrationNumber").attr("disabled", "disabled");
+            $("#driverName").attr("disabled", "disabled");
+            $("#driverSurname").attr("disabled", "disabled");
+            $("#driverPhoneNumber").attr("disabled", "disabled");
+            $("#rentDate").attr("disabled", "disabled");
+            $("#returnDate").attr("disabled", "disabled");
+            $("#comments").attr("disabled", "disabled");
+        }
+
+    </script>*@
+}
